@@ -11,7 +11,7 @@
           <div class="ant-col-8">
             <div class="ant-row headerCenter">
               <div class="ant-col-6">
-                <router-link class="hcFont active" to="/">首页</router-link>
+                <router-link to="/" class="hcFont active">首页</router-link>
               </div>
               <div class="ant-col-6">
                 <router-link to="/store" class="hcFont">商城</router-link>

@@ -94,7 +94,7 @@
 export default {};
 </script>
 <style lang="scss">
-/*  尾部样式 */
+/* 尾部样式 */
 .footer {
   width: 100%;
   background-color: #f7f7f7;

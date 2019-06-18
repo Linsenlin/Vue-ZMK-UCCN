@@ -16,7 +16,7 @@
           <div class="ant-form-item-control">
             <span class="ant-form-item-children">
               <input type="password" placeholder="密码" id="password" class="ant-input" value>
-              <img src="@/assets/images/login/show.png" alt class="eye">
+              <img src="@/assets/images/login/show.png" alt="显示" class="eye">
             </span>
           </div>
         </div>
@@ -75,7 +75,6 @@ export default {
 </script>
 
 <style lang="scss" scope>
-// 个人中心
 //登录
 .login {
   width: 100%;
@@ -83,7 +82,7 @@ export default {
   padding: 50px 0 106px 0;
   box-sizing: border-box;
   margin-top: 100px;
-  
+
   .plTitle {
     width: 39%;
     margin: 0 auto;
@@ -193,8 +192,5 @@ export default {
       }
     }
   }
-}
-.Personcenter {
-  width: 100%;
 }
 </style>
