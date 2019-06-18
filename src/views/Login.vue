@@ -1,6 +1,6 @@
 <template>
-  <div id="login">
-    <div class="plTitle">登录</div>
+  <div class="login">
+    <div class="plTitle">登 录</div>
     <form class="ant-form ant-form-horizontal login-form">
       <div class="ant-row ant-form-item">
         <div class="ant-form-item-control-wrapper">
@@ -82,7 +82,8 @@ export default {
   background-color: #f7f7f7;
   padding: 50px 0 106px 0;
   box-sizing: border-box;
-
+  margin-top: 100px;
+  
   .plTitle {
     width: 39%;
     margin: 0 auto;

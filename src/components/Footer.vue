@@ -72,8 +72,7 @@
           <div class="ant-col-6 fmRight">
             <div class="fmDetail">
               <div>
-                <img src alt
-                class="tel"> 400-1234-5678
+                <img src alt class="tel"> 400-1234-5678
               </div>
               <div class="fdTime">周一至周五 9:00-18:00</div>
               <div class="wechat">
@@ -84,8 +83,8 @@
         </div>
       </div>
       <div class="fc-copyright">
-        <div>© 2013-2018 OnePlus. All Rights Reserved. (粤ICP备13080605号-4)</div>
-        <div>粤公网安备 44030402001407号粤公网安备 44030402001407号</div>
+        <div>© 2013-2018 SCIBEA. All Rights Reserved. (川ICP备13080605号-4)</div>
+        <div>川公网安备 44030402001407号川公网安备 44030402001407号</div>
       </div>
     </div>
   </div>
