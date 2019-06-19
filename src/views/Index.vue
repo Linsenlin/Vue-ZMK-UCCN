@@ -4,8 +4,7 @@
       <div class="container">
         <div class="banner-text">
           <div class="slider-info">
-            <h3>We Provide Best Photographer</h3>
-            <a class="btn btn-primary mt-3" href="services.html" role="button">Read more</a>
+            <a class="details" href="#/" role="button">了解详情 ></a>
           </div>
         </div>
       </div>
@@ -13,7 +12,10 @@
   </div>
 </template>
 <script>
-import png from '@/assets/images/index/bg_xs.png'
+import png from "@/assets/images/index/bg_xs.png";
+
+// let png =
+// "https://image01.oneplus.cn/shop/201906/13/1798/84063d5fccde396f568fc4e736c621f0.jpg";
 export default {
   name: "index",
   data() {
@@ -22,8 +24,7 @@ export default {
         background: `url(${png}) no-repeat center center`,
         backgroundSize: "cover",
         height: "900px"
-      },
-      aa:'222'
+      }
     };
   }
 };
