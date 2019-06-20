@@ -14,8 +14,9 @@
                 autocomplete="off"
                 autofocus="autofocus"
                 maxlength="11"
-                v-model="userPhone"
+                v-model="form.userPhone"
                 @blur="userPhoneFun('blur')"
+                ref="userPhone"
               >
               <p class="zmk-error" v-show="phoneError">{{userPhoneText}}</p>
             </div>
@@ -28,11 +29,12 @@
                 autocomplete="off"
                 autofocus="autofocus"
                 maxlength="16"
-                v-model="password"
+                v-model="form.password"
                 @blur="userPasswordFun('blur')"
+                ref="password"
               >
               <a href="#/">
-                <img src="@/assets/images/login/show.png" alt="显示" @click="showPassword">
+                <!-- <img src="@/assets/images/login/show.png" alt="显示" @click="showPassword"> -->
               </a>
               <p class="zmk-error" v-show="passwordError">{{passwordText}}</p>
             </div>
@@ -68,13 +70,15 @@ export default {
   name: "login",
   data() {
     return {
-      userPhone: null, //手机号码
-      password: "", //密码
+      form: {
+        userPhone: null, //手机号码
+        password: "" //密码
+      },
       phoneError: false, //手机号码错误提示颜色
       passwordError: false, //密码错误提示颜色
       userPhoneText: "请输入11位手机号码",
-      passwordText: "请输入您的登录密码",
-      passwordType: "password"
+      passwordText: "请输入您的登录密码"
+      // passwordType: "password"
     };
   },
   methods: {
@@ -82,48 +86,54 @@ export default {
     onSubmit() {
       return false;
     },
-    // 失去焦点和得到焦点的验证方法，name为要验证的字段名,type为blur或focus
     userPhoneFun(type) {
       //非手机号或号码小于11位或号码不为空
       if (
-        !/^1[3456789]\d{9}$/.test(this.userPhone) ||
-        this.userPhone.length < 11 ||
-        this.userPhone === null
+        !/^1[3456789]\d{9}$/.test(this.form.userPhone) ||
+        this.form.userPhone.length < 11 ||
+        this.form.userPhone === null
       ) {
         this.phoneError = true;
+        this.$refs.userPhone.style.borderColor = "#eb0028";
         return false;
       } else {
+        this.$refs.userPhone.style.borderColor = "#ccc";
         this.phoneError = false;
       }
     },
     userPasswordFun(type) {
-      if (this.password.length < 6 || this.password === "") {
+      if (this.form.password.length < 6 || this.form.password === "") {
         this.passwordError = true;
+        this.$refs.password.style.borderColor = "#eb0028";
         return false;
       } else {
+        this.$refs.password.style.borderColor = "#ccc";
         this.passwordError = false;
       }
     },
     //登录确定按钮
     userConfirmFun() {
-      if (this.password === "" && this.userPhone === null) {
+      if (this.form.password === "" && this.form.userPhone === null) {
         this.passwordError = true;
         this.phoneError = true;
       }
-    },
-    showPassword() {
-      console.log("2");
-      if (this.passwordType === "password") {
-        this.passwordType = "text";
-      } else {
-        this.passwordType = "password";
-      }
     }
+    // showPassword() {
+    //   console.log("2");
+    //   if (this.passwordType === "password") {
+    //     this.passwordType = "text";
+    //   } else {
+    //     this.passwordType = "password";
+    //   }
+    // }
   },
   watch: {
     //密码加星号
-    password(newName, oldName) {
-      this.password = newName.replace(/./g, "•");
+    "form.password": {
+      handler(newName, oldName) {
+        this.form.password = newName.replace(/./g, "•");
+      },
+      deep: true
     }
   },
   computed: {}
