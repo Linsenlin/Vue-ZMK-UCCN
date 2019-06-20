@@ -15,7 +15,7 @@
                 autofocus="autofocus"
                 maxlength="11"
                 v-model="userPhone"
-                value
+                @blur="userPhoneFun('user_Phone','blur')"
               >
               <p class="zmk-error" v-if="phoneError">请输入11位手机号码</p>
             </div>
@@ -28,7 +28,6 @@
                 autocomplete="off"
                 autofocus="autofocus"
                 v-model="password"
-                value
               >
               <a href="#/">
                 <img src="@/assets/images/login/show.png" alt="显示">
@@ -67,11 +66,54 @@ export default {
   name: "login",
   data() {
     return {
-      userPhone: "",
+      userPhone: null,
       password: "",
-      phoneError: true,
-      passwordError: true
+      phoneError: false,
+      passwordError: false
     };
+  },
+  methods: {
+    // 失去焦点和得到焦点的验证方法，name为要验证的字段名,type为blur或focus
+    userPhoneFun(name, type) {
+      //号码不为空
+      if (this.userPhone === null) {
+        console.log("号码空的");
+        this.phoneError = true;
+        return;
+      }
+      if (this.userPhone.length < 11) {
+        console.log("号码不正确");
+        this.phoneError = true;
+        //   // if (type == "blur") {
+        //   //   this.companyName.animate = false;
+        //   // } else {
+        //   //   this.companyName.animate = true;
+        //   //   return;
+        //   // }
+        //   // if (this.companyName.companyName.trim().length == 0) {
+        //   //   this.companyName.valid = false;
+        //   //   this.companyName.message = "请输入企业名称";
+        //   //   return false;
+        //   // } else {
+        //   //   this.companyName.valid = true;
+        //   //   return true;
+        //   // }
+      }
+
+      if (this.userPhone.length === 11) {
+        console.log("号码11位正确");
+        this.phoneError = false;
+      }
+    }
+  },
+  watch: {},
+  computed: {
+    // userPhone: function() {
+    //   if (this.userPhone < 11) {
+    //     console.log("号码不正确");
+    //   }
+    //   //     return this.firstname + '-' + this.lastname
+    // }
   }
 };
 </script>
