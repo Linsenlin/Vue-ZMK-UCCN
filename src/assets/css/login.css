@@ -51,8 +51,9 @@ input::-webkit-input-placeholder {
 
 .zmk-phone,
 .zmk-password {
+    height: 78px;
     position     : relative;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
 }
 
 .zmk-password img {

@@ -15,9 +15,9 @@
                 autofocus="autofocus"
                 maxlength="11"
                 v-model="userPhone"
-                @blur="userPhoneFun('user_Phone','blur')"
+                @blur="userPhoneFun('blur')"
               >
-              <p class="zmk-error" v-if="phoneError">请输入11位手机号码</p>
+              <p class="zmk-error" v-show="phoneError">请输入11位手机号码</p>
             </div>
             <div class="zmk-password">
               <input
@@ -27,12 +27,13 @@
                 placeholder="请输入密码"
                 autocomplete="off"
                 autofocus="autofocus"
+                maxlength="16"
                 v-model="password"
               >
               <a href="#/">
                 <img src="@/assets/images/login/show.png" alt="显示">
               </a>
-              <p class="zmk-error" v-if="passwordError">用户名或密码错误</p>
+              <p class="zmk-error" v-show="passwordError">用户名或密码错误</p>
             </div>
             <button type="text" class="zmk-button">确 定</button>
           </div>
@@ -66,42 +67,24 @@ export default {
   name: "login",
   data() {
     return {
-      userPhone: null,
-      password: "",
-      phoneError: false,
-      passwordError: false
+      userPhone: null, //手机号码
+      password: "", //密码
+      phoneError: false, //手机号码错误提示颜色
+      passwordError: false //密码错误提示颜色
     };
   },
   methods: {
     // 失去焦点和得到焦点的验证方法，name为要验证的字段名,type为blur或focus
-    userPhoneFun(name, type) {
-      //号码不为空
-      if (this.userPhone === null) {
-        console.log("号码空的");
+    userPhoneFun(type) {
+      //非手机号或号码小于11位或号码不为空
+      if (
+        !/^1[3456789]\d{9}$/.test(this.userPhone) ||
+        this.userPhone.length < 11 ||
+        this.userPhone === null
+      ) {
         this.phoneError = true;
-        return;
-      }
-      if (this.userPhone.length < 11) {
-        console.log("号码不正确");
-        this.phoneError = true;
-        //   // if (type == "blur") {
-        //   //   this.companyName.animate = false;
-        //   // } else {
-        //   //   this.companyName.animate = true;
-        //   //   return;
-        //   // }
-        //   // if (this.companyName.companyName.trim().length == 0) {
-        //   //   this.companyName.valid = false;
-        //   //   this.companyName.message = "请输入企业名称";
-        //   //   return false;
-        //   // } else {
-        //   //   this.companyName.valid = true;
-        //   //   return true;
-        //   // }
-      }
-// !/^1[345678]\d{9}$/.test(this.phone)
-      if (this.userPhone.length === 11) {
-        console.log("号码11位正确");
+        return false;
+      } else {
         this.phoneError = false;
       }
     }
