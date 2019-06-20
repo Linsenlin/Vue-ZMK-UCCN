@@ -3,7 +3,7 @@
     <div class="container">
       <div class="zmk-loginDiv">
         <p class="zmk-loginTitle">登 录</p>
-        <form class="zmk-form">
+        <form class="zmk-form" @submit.prevent="onSubmit">
           <div class="zmk-formDiv">
             <div class="zmk-phone">
               <input
@@ -17,7 +17,7 @@
                 v-model="userPhone"
                 @blur="userPhoneFun('blur')"
               >
-              <p class="zmk-error" v-show="phoneError">请输入11位手机号码</p>
+              <p class="zmk-error" v-show="phoneError">{{userPhoneText}}</p>
             </div>
             <div class="zmk-password">
               <input
@@ -29,13 +29,14 @@
                 autofocus="autofocus"
                 maxlength="16"
                 v-model="password"
+                @blur="userPasswordFun('blur')"
               >
               <a href="#/">
-                <img src="@/assets/images/login/show.png" alt="显示">
+                <img src="@/assets/images/login/show.png" alt="显示" @click="showPassword">
               </a>
-              <p class="zmk-error" v-show="passwordError">用户名或密码错误</p>
+              <p class="zmk-error" v-show="passwordError">{{passwordText}}</p>
             </div>
-            <button type="text" class="zmk-button">确 定</button>
+            <button type="text" class="zmk-button" @click="userConfirmFun">确 定</button>
           </div>
         </form>
         <div class="zmk-Message">
@@ -70,10 +71,17 @@ export default {
       userPhone: null, //手机号码
       password: "", //密码
       phoneError: false, //手机号码错误提示颜色
-      passwordError: false //密码错误提示颜色
+      passwordError: false, //密码错误提示颜色
+      userPhoneText: "请输入11位手机号码",
+      passwordText: "请输入您的登录密码",
+      passwordType: "password"
     };
   },
   methods: {
+    //阻止表单默认的提交
+    onSubmit() {
+      return false;
+    },
     // 失去焦点和得到焦点的验证方法，name为要验证的字段名,type为blur或focus
     userPhoneFun(type) {
       //非手机号或号码小于11位或号码不为空
@@ -87,17 +95,38 @@ export default {
       } else {
         this.phoneError = false;
       }
+    },
+    userPasswordFun(type) {
+      if (this.password.length < 6 || this.password === "") {
+        this.passwordError = true;
+        return false;
+      } else {
+        this.passwordError = false;
+      }
+    },
+    //登录确定按钮
+    userConfirmFun() {
+      if (this.password === "" && this.userPhone === null) {
+        this.passwordError = true;
+        this.phoneError = true;
+      }
+    },
+    showPassword() {
+      console.log("2");
+      if (this.passwordType === "password") {
+        this.passwordType = "text";
+      } else {
+        this.passwordType = "password";
+      }
     }
   },
-  watch: {},
-  computed: {
-    // userPhone: function() {
-    //   if (this.userPhone < 11) {
-    //     console.log("号码不正确");
-    //   }
-    //   //     return this.firstname + '-' + this.lastname
-    // }
-  }
+  watch: {
+    //密码加星号
+    password(newName, oldName) {
+      this.password = newName.replace(/./g, "•");
+    }
+  },
+  computed: {}
 };
 </script>
 
