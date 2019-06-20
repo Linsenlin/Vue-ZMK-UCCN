@@ -28,9 +28,19 @@ export default new Router({
       component: () => import('@/views/Service.vue')
     },
     {
-      path: '/login',
-      name: 'login',
-      component: () => import('@/views/Login.vue')
+      path: '/weblogin',
+      name: 'weblogin',
+      component: () => import('@/views/WebLogin.vue')
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: () => import('@/views/Register.vue')
+    },
+    {
+      path: '/messagelogin',
+      name: 'messagelogin',
+      component: () => import('@/views/MessageLogin.vue')
     }
   ]
 })

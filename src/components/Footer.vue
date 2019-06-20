@@ -72,11 +72,11 @@
           <div class="ant-col-6 fmRight">
             <div class="fmDetail">
               <div>
-                <img src alt class="tel"> 400-1234-5678
+                <img src="@/assets/images/footer/phone.png" alt="客户电话" class="tel"> 400-1234-5678
               </div>
               <div class="fdTime">周一至周五 9:00-18:00</div>
               <div class="wechat">
-                <img src alt>
+                <img src="@/assets/images/footer/wechart.png" alt="微信">
               </div>
             </div>
           </div>

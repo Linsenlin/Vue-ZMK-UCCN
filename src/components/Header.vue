@@ -37,7 +37,7 @@
                 </router-link>
               </div>
               <div class="ant-col-8">
-                <router-link to="/login" class="hrIcon">
+                <router-link to="/weblogin" class="hrIcon">
                   <img src="@/assets/images/header/login.png" alt="登录">
                 </router-link>
               </div>

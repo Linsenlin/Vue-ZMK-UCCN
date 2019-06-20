@@ -1,0 +1,168 @@
+/* 登录 */
+.login {
+    background-color: #f7f7f7;
+    font-family     : Microsoft YaHei;
+}
+
+.zmk-loginDiv {
+    width           : 540px;
+    height          : 715px;
+    background-color: #fff;
+    margin          : 130px auto 200px;
+}
+
+.zmk-loginTitle {
+    font-weight: 400;
+    font-size  : 28px;
+    text-align : center;
+    padding    : 30px 0 70px 0;
+}
+
+.zmk-text {
+    margin-left: 70px;
+    font-size  : 12px;
+}
+
+.zmk-form {
+    width: 540px;
+}
+
+.zmk-formDiv {
+    margin-left: 70px;
+}
+
+.zmk-formDiv input {
+    width       : 400px;
+    height      : 48px;
+    border      : 1px solid #ccc;
+    padding-left: 20px;
+    font-size   : 16px;
+    outline     : 0px;
+}
+
+input::-webkit-input-placeholder {
+    color: #999;
+}
+
+.zmk-formDiv input.zmk-phoneInput {
+    padding-left: 60px;
+}
+
+
+.zmk-phone,
+.zmk-password {
+    position     : relative;
+    margin-bottom: 40px;
+}
+
+.zmk-password img {
+    position: absolute;
+    right   : 90px;
+    top     : 18px;
+}
+
+.zmk-areaCode {
+    position    : absolute;
+    top         : 0;
+    left        : 0;
+    line-height : 48px;
+    width       : 48px;
+    height      : 48px;
+    text-align  : center;
+    font-size   : 16px;
+    font-weight : 400;
+    color       : #999;
+    border-right: 1px solid #999;
+}
+
+.zmk-verificationCode {
+    position   : absolute;
+    top        : 0;
+    right      : 70px;
+    line-height: 48px;
+    width      : 130px;
+    height     : 48px;
+    text-align : center;
+    font-size  : 16px;
+    font-weight: 400;
+    color      : #999;
+    border-left: 1px solid #999;
+    cursor     : pointer;
+}
+
+
+.zmk-button {
+    width        : 400px;
+    height       : 60px;
+    background   : #eee;
+    border-radius: 6px;
+    font-size    : 22px;
+    border       : 1px solid transparent;
+    outline      : none;
+    margin-top   : 40px;
+    color        : #999;
+}
+
+.zmk-Message {
+    margin: 60px 0 0 90px;
+}
+
+.zmk-Message a {
+    color          : #333;
+    border-right   : 2px solid #333;
+    font-size      : 16px;
+    text-decoration: none;
+    padding        : 0 20px;
+
+}
+
+a.zmk-linkBlue {
+    color: #09c;
+}
+
+a.zmk-forget {
+    border-right: none;
+}
+
+.zmk-otherLogin {
+    height    : 28px;
+    margin-top: 50px;
+}
+
+.zmk-other {
+    border-bottom: 1px solid #999;
+    color        : #999;
+    width        : 60%;
+    margin       : 50px auto 0;
+    position     : relative;
+}
+
+.zmk-other span {
+    font-size       : 14px;
+    display         : inline-block;
+    background-color: #fff;
+    padding         : 0 20px;
+    position        : absolute;
+    top             : -10px;
+    right           : 86px;
+}
+
+.zmk-otherLoginPort {
+    margin: 20px 0 0 156px;
+}
+
+.zmk-aa {
+    width : 540px;
+    margin: 0 auto;
+}
+
+.zmk-otherLoginPort a {
+    padding   : 0 20px;
+    text-align: center
+}
+
+.zmk-error {
+    color        : #eb0028;
+    margin-bottom: 0;
+    margin-top   : 10px;
+}
