@@ -99,7 +99,7 @@ export default {
         //   //   return true;
         //   // }
       }
-
+// !/^1[345678]\d{9}$/.test(this.phone)
       if (this.userPhone.length === 11) {
         console.log("号码11位正确");
         this.phoneError = false;
