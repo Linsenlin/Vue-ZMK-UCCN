@@ -8,17 +8,17 @@
             <div class="zmk-phone">
               <input
                 type="text"
-                name="userPhone"
-                id="userPhone"
+                name="mobile"
+                id="mobile"
                 placeholder="请输入手机号"
                 autocomplete="off"
                 autofocus="autofocus"
                 maxlength="11"
-                v-model="form.userPhone"
-                @blur="userPhoneFun()"
-                ref="userPhone"
+                v-model="form.mobile"
+                @blur="mobileFun()"
+                ref="mobile"
               >
-              <p class="zmk-error" ref="phoneError" v-show="phoneError">{{userPhoneText}}</p>
+              <p class="zmk-error" ref="phoneError" v-show="phoneError">{{mobileText}}</p>
             </div>
             <div class="zmk-password">
               <input
@@ -77,15 +77,15 @@ export default {
   data() {
     return {
       form: {
-        userPhone: null, //手机号码
+        mobile: null, //手机号码
         password: "" //密码
       },
       phoneError: false, //手机号码错误提示颜色
       passwordError: false, //密码错误提示颜色
-      userPhoneText: "请输入11位手机号码",
+      mobileText: "请输入11位手机号码",
       passwordText: "请输入您的登录密码",
       confirmBtn: {},
-      disabled: true
+      disabled: true //禁用按钮状态
       // passwordType: "password"
     };
   },
@@ -95,10 +95,10 @@ export default {
       return false;
     },
     //输入框焦点事件
-    userPhoneFun() {
-      this.$utils.userPhoneFun(
-        this.form.userPhone,
-        this.$refs.userPhone,
+    mobileFun() {
+      this.$utils.mobileFun(
+        this.form.mobile,
+        this.$refs.mobile,
         this.$refs.phoneError
       );
     },
@@ -115,16 +115,16 @@ export default {
     //登录确定按钮
     userConfirmFun() {
       //号码密码都为空
-      if (this.form.userPhone === null && this.form.password === "") {
+      if (this.form.mobile === null && this.form.password === "") {
         this.phoneError = this.passwordError = true;
-        this.$refs.userPhone.style.borderColor = "#eb0028";
+        this.$refs.mobile.style.borderColor = "#eb0028";
         this.$refs.password.style.borderColor = "#eb0028";
         return false;
       }
       //号码为空
-      if (this.form.userPhone === null) {
+      if (this.form.mobile === null) {
         this.phoneError = true;
-        this.$refs.userPhone.style.borderColor = "#eb0028";
+        this.$refs.mobile.style.borderColor = "#eb0028";
         return false;
       }
       //密码为空
@@ -145,18 +145,18 @@ export default {
   },
   computed: {
     // btnObj() {
-    //   const { userPhone, password } = this;
+    //   const { mobile, password } = this;
     //   return {
-    //     userPhone,
+    //     mobile,
     //     password
     //   };
     // }
   },
   watch: {
     //号码监听
-    "form.userPhone": {
+    "form.mobile": {
       handler(newName, oldName) {
-        if (this.form.userPhone.length === 11) {
+        if (this.form.mobile.length === 11) {
           this.disabled = false;
           this.confirmBtn = {
             backgroundColor: "#333",

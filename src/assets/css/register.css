@@ -82,6 +82,25 @@ input::-webkit-input-placeholder {
     top     : 18px
 }
 
+.zmk-passwordRules span {
+    margin-right: 20px;
+}
+
+.zmk-verificationCode {
+    position   : absolute;
+    top        : 0;
+    right      : 70px;
+    line-height: 48px;
+    width      : 130px;
+    height     : 48px;
+    text-align : center;
+    font-size  : 16px;
+    font-weight: 400;
+    color      : #999;
+    border-left: 1px solid #999;
+    cursor     : pointer;
+}
+
 .zmk-terms {
     color     : #999;
     font-size : 12px;
