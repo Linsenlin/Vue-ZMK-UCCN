@@ -30,17 +30,18 @@
                 placeholder="请输入密码"
                 autocomplete="off"
                 autofocus="autofocus"
+                maxlength="16"
                 @blur="userPasswordFun()"
                 ref="password"
               >
               <a href="#/">
                 <!-- <img src="@/assets/images/login/show.png" alt="显示"> -->
               </a>
-              <div class="zmk-passwordRules" v-show="passwordError">
+              <p class="zmk-passwordRules" ref="passwordError" v-show="passwordError">
                 <span>•6 ～16 位字符</span>
                 <span>•包含数字</span>
                 <span>•包含字母</span>
-              </div>
+              </p>
             </div>
             <div class="zmk-password">
               <input
@@ -49,9 +50,17 @@
                 id="verificationCode"
                 placeholder="请输入短信验证码"
                 autocomplete="off"
+                maxlength="6"
                 autofocus="autofocus"
+                @blur="verifycodeFun()"
+                ref="verifycode"
               >
-              <label for="input-tel" class="zmk-verificationCode zmk-linkBlue">获取验证码</label>
+              <label
+                for="input-tel"
+                class="zmk-verificationCode zmk-linkBlue"
+                disabled
+                @click="getVerifycode"
+              >获取验证码</label>
               <p class="zmk-error" ref="codeError" v-show="codeError">{{verifycodeText}}</p>
             </div>
           </div>
@@ -61,7 +70,7 @@
             <router-link to="/#" class="zmk-linkBlue link-underline" target="_blank">使用条款</router-link>和
             <router-link to="/#" class="zmk-linkBlue link-underline" target="_blank">隐私政策</router-link>
           </div>
-          <button type="text" class="zmk-register">创建账号</button>
+          <button type="text" class="zmk-register" @click="registerFun">创建账号</button>
           <div class="zmk-login">
             <router-link to="/weblogin" class="zmk-linkBlue">登录</router-link>
           </div>
@@ -77,7 +86,7 @@ export default {
   data() {
     return {
       form: {
-        mobile: null, //手机号码
+        mobile: "", //手机号码
         password: "", //密码
         verifycode: "" //验证码
       },
@@ -96,7 +105,7 @@ export default {
     onSubmit() {
       return false;
     },
-    //输入框焦点事件
+    //手机输入框焦点事件
     mobileFun() {
       this.$utils.mobileFun(
         this.form.mobile,
@@ -104,6 +113,7 @@ export default {
         this.$refs.phoneError
       );
     },
+    //密码输入框事件
     userPasswordFun(type) {
       if (this.form.password.length < 6 || this.form.password === "") {
         this.passwordError = true;
@@ -113,6 +123,52 @@ export default {
         this.$refs.password.style.borderColor = "#ccc";
         this.passwordError = false;
       }
+    },
+    //验证码输入框事件
+    verifycodeFun() {
+      console.log(this.form.verifycode);
+      if (this.form.verifycode.length === null) {
+        console.log("11");
+        this.codeError = true;
+        this.$refs.verifycode.style.borderColor = "#eb0028";
+        return false;
+      } else {
+        console.log("22");
+        this.codeError = false;
+        this.$refs.verifycode.style.borderColor = "#ccc";
+      }
+    },
+    getVerifycode() {
+      console.log("1");
+      this.$axios.defaults.headers["Content-Type"] =
+        "application/x-www-form-urlencoded;charset=UTF-8"; //此处是增加的代码，设置请求头的类型
+      this.$axios
+        .get(
+          "http://39.98.167.238:8096/user/GetVerifycode?mobile=" +
+            this.form.mobile
+        )
+        .then(function(res) {
+          console.log(res);
+          // var data = res.data;
+          //返回的数据都在res.data里面
+        })
+        .catch(function(err) {
+          console.log(err);
+        });
+    },
+    registerFun() {
+      this.$axios
+        .get(
+          "http://39.98.167.238:8096/user/LoginByVerifycode?mobile=15882453200&verifycode=174514"
+        )
+        .then(function(res) {
+          console.log(res);
+          // var data = res.data;
+          //返回的数据都在res.data里面
+        })
+        .catch(function(err) {
+          console.log(err);
+        });
     }
   },
   watch: {}

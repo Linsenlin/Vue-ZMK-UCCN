@@ -3,14 +3,11 @@ import Vue from 'vue';
 const utils = {
     //手机号输入框焦点事件
     mobileFun(phone, border, error) {
-        // console.log(phone)
-        // console.log(border)
-        // console.log(error)
         //非手机号或号码小于11位或号码不为空
         if (
             !/^1[3456789]\d{9}$/.test(phone) ||
             phone.length < 11 ||
-            phone === null
+            phone === ""
         ) {
             border.style.borderColor = "#eb0028";
             error.style.display = "block";

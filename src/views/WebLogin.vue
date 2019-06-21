@@ -133,6 +133,18 @@ export default {
         this.$refs.password.style.borderColor = "#eb0028";
         return false;
       }
+      //  this.$axios
+      //   .get(
+      //     "http://192.168.1.9:8096/user/LoginByPass?mobile=15882453200&password="+this.$md5('123456')
+      //   )
+      //   .then(function(res) {
+      //     console.log(res);
+      //     // var data = res.data;
+      //     //返回的数据都在res.data里面
+      //   })
+      //   .catch(function(err) {
+      //     console.log(err);
+      //   });
     }
     // showPassword() {
     //   console.log("2");
