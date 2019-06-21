@@ -15,10 +15,10 @@
                 autofocus="autofocus"
                 maxlength="11"
                 v-model="form.userPhone"
-                @blur="userPhoneFun('blur')"
+                @blur="userPhoneFun()"
                 ref="userPhone"
               >
-              <p class="zmk-error" v-show="phoneError">{{userPhoneText}}</p>
+              <p class="zmk-error" ref="phoneError" v-show="phoneError">{{userPhoneText}}</p>
             </div>
             <div class="zmk-password">
               <input
@@ -30,15 +30,21 @@
                 autofocus="autofocus"
                 maxlength="16"
                 v-model="form.password"
-                @blur="userPasswordFun('blur')"
+                @blur="userPasswordFun()"
                 ref="password"
               >
               <a href="#/">
                 <!-- <img src="@/assets/images/login/show.png" alt="显示" @click="showPassword"> -->
               </a>
-              <p class="zmk-error" v-show="passwordError">{{passwordText}}</p>
+              <p class="zmk-error" ref="passwordError" v-show="passwordError">{{passwordText}}</p>
             </div>
-            <button type="text" class="zmk-button" @click="userConfirmFun">确 定</button>
+            <button
+              type="text"
+              class="zmk-button"
+              :disabled="disabled"
+              :style="confirmBtn"
+              @click="userConfirmFun"
+            >确 定</button>
           </div>
         </form>
         <div class="zmk-Message">
@@ -77,7 +83,9 @@ export default {
       phoneError: false, //手机号码错误提示颜色
       passwordError: false, //密码错误提示颜色
       userPhoneText: "请输入11位手机号码",
-      passwordText: "请输入您的登录密码"
+      passwordText: "请输入您的登录密码",
+      confirmBtn: {},
+      disabled: true
       // passwordType: "password"
     };
   },
@@ -86,20 +94,13 @@ export default {
     onSubmit() {
       return false;
     },
-    userPhoneFun(type) {
-      //非手机号或号码小于11位或号码不为空
-      if (
-        !/^1[3456789]\d{9}$/.test(this.form.userPhone) ||
-        this.form.userPhone.length < 11 ||
-        this.form.userPhone === null
-      ) {
-        this.phoneError = true;
-        this.$refs.userPhone.style.borderColor = "#eb0028";
-        return false;
-      } else {
-        this.$refs.userPhone.style.borderColor = "#ccc";
-        this.phoneError = false;
-      }
+    //输入框焦点事件
+    userPhoneFun() {
+      this.$utils.userPhoneFun(
+        this.form.userPhone,
+        this.$refs.userPhone,
+        this.$refs.phoneError
+      );
     },
     userPasswordFun(type) {
       if (this.form.password.length < 6 || this.form.password === "") {
@@ -113,9 +114,24 @@ export default {
     },
     //登录确定按钮
     userConfirmFun() {
-      if (this.form.password === "" && this.form.userPhone === null) {
-        this.passwordError = true;
+      //号码密码都为空
+      if (this.form.userPhone === null && this.form.password === "") {
+        this.phoneError = this.passwordError = true;
+        this.$refs.userPhone.style.borderColor = "#eb0028";
+        this.$refs.password.style.borderColor = "#eb0028";
+        return false;
+      }
+      //号码为空
+      if (this.form.userPhone === null) {
         this.phoneError = true;
+        this.$refs.userPhone.style.borderColor = "#eb0028";
+        return false;
+      }
+      //密码为空
+      if (this.form.password === "") {
+        this.passwordError = true;
+        this.$refs.password.style.borderColor = "#eb0028";
+        return false;
       }
     }
     // showPassword() {
@@ -127,16 +143,45 @@ export default {
     //   }
     // }
   },
+  computed: {
+    // btnObj() {
+    //   const { userPhone, password } = this;
+    //   return {
+    //     userPhone,
+    //     password
+    //   };
+    // }
+  },
   watch: {
+    //号码监听
+    "form.userPhone": {
+      handler(newName, oldName) {
+        if (this.form.userPhone.length === 11) {
+          this.disabled = false;
+          this.confirmBtn = {
+            backgroundColor: "#333",
+            color: "#fff"
+          };
+        }
+      },
+      deep: true
+    },
     //密码加星号
     "form.password": {
       handler(newName, oldName) {
+        console.log(newName);
         this.form.password = newName.replace(/./g, "•");
+        if (this.form.password !== "") {
+          this.disabled = false;
+          this.confirmBtn = {
+            backgroundColor: "#333",
+            color: "#fff"
+          };
+        }
       },
       deep: true
     }
-  },
-  computed: {}
+  }
 };
 </script>
 

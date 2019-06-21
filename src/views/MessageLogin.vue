@@ -14,7 +14,6 @@
                 autocomplete="off"
                 autofocus="autofocus"
                 class="zmk-phoneInput"
-                value
               >
               <label for="input-tel" class="zmk-areaCode">+86</label>
               <p class="zmk-error">未注册的手机号，点此快速注册</p>
@@ -28,10 +27,8 @@
                 placeholder="请输入短信验证码"
                 autocomplete="off"
                 autofocus="autofocus"
-                value
               >
               <label for="input-tel" class="zmk-verificationCode zmk-linkBlue">获取验证码</label>
-              
             </div>
             <button type="text" class="zmk-button">确 定</button>
           </div>

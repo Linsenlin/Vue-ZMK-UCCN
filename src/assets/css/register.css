@@ -2,21 +2,21 @@
 
 .register {
     background-color: #f7f7f7;
-    font-family: Microsoft YaHei;
+    font-family     : Microsoft YaHei;
 }
 
 .zmk-regDiv {
-    width: 540px;
-    height: 715px;
+    width           : 540px;
+    height          : 715px;
     background-color: #fff;
-    margin: 130px auto 200px;
+    margin          : 130px auto 200px;
 }
 
 .zmk-regTitle {
-    font-weight: 400;
-    font-size: 28px;
-    text-align: center;
-    padding: 30px 0 70px 0;
+    font-weight  : 400;
+    font-size    : 28px;
+    text-align   : center;
+    padding      : 30px 0 70px 0;
     margin-bottom: 0;
 }
 
@@ -28,32 +28,33 @@
     margin-left: 70px;
 }
 
-.zmk-phone, .zmk-password {
-    position: relative;
+.zmk-phone,
+.zmk-password {
+    position     : relative;
     margin-bottom: 40px;
 }
 
 .zmk-areaCode {
-    position: absolute;
-    top: 0;
-    left: 0;
-    line-height: 48px;
-    width: 48px;
-    height: 48px;
-    text-align: center;
-    font-size: 16px;
-    font-weight: 400;
-    color: #999;
+    position    : absolute;
+    top         : 0;
+    left        : 0;
+    line-height : 48px;
+    width       : 48px;
+    height      : 48px;
+    text-align  : center;
+    font-size   : 16px;
+    font-weight : 400;
+    color       : #999;
     border-right: 1px solid #999;
 }
 
 .zmk-formDiv input {
-    width: 400px;
-    height: 48px;
-    border: 1px solid #ccc;
+    width       : 400px;
+    height      : 48px;
+    border      : 1px solid #ccc;
     padding-left: 20px;
-    font-size: 16px;
-    outline: 0px;
+    font-size   : 16px;
+    outline     : 0px;
 }
 
 .zmk-formDiv input:focus {
@@ -68,19 +69,22 @@ input::-webkit-input-placeholder {
     color: #999;
 }
 
+.zmk-phone,
 .zmk-password {
-    position: relative;
+    height       : 78px;
+    position     : relative;
+    margin-bottom: 10px;
 }
 
 .zmk-password img {
     position: absolute;
-    right: 90px;
-    top: 18px
+    right   : 90px;
+    top     : 18px
 }
 
 .zmk-terms {
-    color: #999;
-    font-size: 12px;
+    color     : #999;
+    font-size : 12px;
     margin-top: 134px;
 }
 
@@ -89,25 +93,25 @@ a.zmk-linkBlue {
 }
 
 .zmk-register {
-    width: 400px;
-    height: 60px;
-    background: #eee;
+    width        : 400px;
+    height       : 60px;
+    background   : #eee;
     border-radius: 6px;
-    font-size: 22px;
-    border: 1px solid transparent;
-    outline: none;
-    margin-top: 40px;
-    color: #999;
-    margin-left: 70px;
+    font-size    : 22px;
+    border       : 1px solid transparent;
+    outline      : none;
+    margin-top   : 40px;
+    color        : #999;
+    margin-left  : 70px;
 }
 
 .zmk-login {
     text-align: center;
-    margin: 50px 0 84px 0;
+    margin    : 50px 0 84px 0;
 }
 
 .zmk-error {
-    color: #eb0028;
+    color : #eb0028;
     margin: 10px 0 0 0;
 }
 

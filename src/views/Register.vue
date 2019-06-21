@@ -3,7 +3,7 @@
     <div class="container">
       <div class="zmk-regDiv">
         <p class="zmk-regTitle">注 册</p>
-        <form class="zmk-form">
+        <form class="zmk-form" @submit.prevent="onSubmit">
           <div class="zmk-formDiv">
             <div class="zmk-phone">
               <input
@@ -14,10 +14,13 @@
                 autocomplete="off"
                 autofocus="autofocus"
                 class="zmk-phoneInput"
-                value
+                maxlength="11"
+                v-model="form.userPhone"
+                @blur="userPhoneFun()"
+                ref="userPhone"
               >
               <label for="input-tel" class="zmk-areaCode">+86</label>
-              <p class="zmk-error">请输入11位手机号码</p>
+              <p class="zmk-error" ref="phoneError" v-show="phoneError">{{userPhoneText}}</p>
             </div>
             <div class="zmk-password">
               <input
@@ -27,10 +30,11 @@
                 placeholder="请输入密码"
                 autocomplete="off"
                 autofocus="autofocus"
-                value
+                @blur="userPasswordFun()"
+                ref="password"
               >
               <a href="#/">
-                <img src="@/assets/images/login/show.png" alt="显示">
+                <!-- <img src="@/assets/images/login/show.png" alt="显示"> -->
               </a>
               <div class="zmk-passwordRules">
                 <p>•6 ～16 位字符</p>
@@ -57,7 +61,42 @@
 export default {
   name: "register",
   data() {
-    return {};
+    return {
+      form: {
+        userPhone: null, //手机号码
+        password: "" //密码
+      },
+      phoneError: false, //手机号码错误提示颜色
+      passwordError: false, //密码错误提示颜色
+      userPhoneText: "请输入11位手机号码",
+      passwordText: "请输入您的登录密码",
+      confirmBtn: {},
+      disabled: true
+    };
+  },
+  methods: {
+    //阻止表单默认的提交
+    onSubmit() {
+      return false;
+    },
+    //输入框焦点事件
+    userPhoneFun() {
+      this.$utils.userPhoneFun(
+        this.form.userPhone,
+        this.$refs.userPhone,
+        this.$refs.phoneError
+      );
+    },
+    // userPasswordFun(type) {
+    //   if (this.form.password.length < 6 || this.form.password === "") {
+    //     this.passwordError = true;
+    //     this.$refs.password.style.borderColor = "#eb0028";
+    //     return false;
+    //   } else {
+    //     this.$refs.password.style.borderColor = "#ccc";
+    //     this.passwordError = false;
+    //   }
+    // }
   }
 };
 </script>
