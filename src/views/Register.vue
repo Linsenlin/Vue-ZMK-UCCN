@@ -139,14 +139,13 @@ export default {
       }
     },
     getVerifycode() {
+      console.log(this.$api);
+      console.log(this.$api.register);
       console.log("1");
       this.$axios.defaults.headers["Content-Type"] =
         "application/x-www-form-urlencoded;charset=UTF-8"; //此处是增加的代码，设置请求头的类型
       this.$axios
-        .get(
-          "http://39.98.167.238:8096/user/GetVerifycode?mobile=" +
-            this.form.mobile
-        )
+        .get(this.$api.register + "?mobile=" + this.form.mobile)
         .then(function(res) {
           console.log(res);
           // var data = res.data;
